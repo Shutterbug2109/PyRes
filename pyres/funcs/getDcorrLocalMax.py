@@ -32,34 +32,6 @@ def getDcorrLocalMax(d):
     return ind, A
 
 
-# def getDcorrLocalMax(d):
-#     Nr = len(d)
-#     if Nr < 2:
-#         ind = 0
-#         A = d[0]
-#     else:
-#         A, ind = max(d), np.argmax(d)
-#         while len(d) > 1:
-#             if ind == len(d) - 1:
-#                 d.pop()
-#                 A, ind = max(d), np.argmax(d)
-#             elif ind == 0:
-#                 break
-#             elif (A - min(d[ind:])) >= 0.0005:
-#                 break
-#             else:
-#                 d.pop()
-#                 A, ind = max(d), np.argmax(d)
-#         if ind == []:
-#             ind = 0
-#             A = d[0]
-#         else:
-#             A = d[ind]
-#             # Convert to zero-based index for Python
-#             ind = len(d) - 1
-
-#     return ind, A
-
 
 
 

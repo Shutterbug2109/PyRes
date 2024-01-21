@@ -8,10 +8,6 @@ from .getDcorrLocalMax import getDcorrLocalMax
 from .getRadAvg import getRadAvg
 from .linmap import linmap
 
-# im = load_data('img_generated_1.tif').astype(np.float64)
-# print(f"Image shape is : {im.shape}")
-# pps = 5  # projected pixel size of 15nm
-# # typical parameters for resolution estimate
 Nr = 50
 Ng = 10
 r = np.linspace(0, 1, Nr)
@@ -41,7 +37,6 @@ def getDcorr(im, r=None, Ng=None, figID=None):
         im = im[:-1, :]
     if im.shape[1] % 2 == 0:
         im = im[:, :-1]
-    # im = im[:-(im.shape[0] % 2), :-(im.shape[1] % 2)]  # odd number of pixels
     print(f"Image shape is : {im.shape}")
 
     X, Y = np.meshgrid(np.linspace(-1, 1, im.shape[1]), np.linspace(-1, 1, im.shape[0]))
@@ -101,15 +96,10 @@ def getDcorr(im, r=None, Ng=None, figID=None):
 
         # Append 'cc' to 'd0'
         d0[k] = cc
-        #print("Correlation coefficient is : ", cc)
-        #print("d0 is : ", d0)
 
         # If in 'fastMode', look for local maxima and update 'ind0' and 'snr0'
         if fastMode == 1:
             ind0, snr0 = getDcorrLocalMax(d0[k:])
-            #print(f"ind0 is : {ind0}")
-            #print(f"snr0 is : {snr0}")
-            #print(f"k is : {k}")
             ind0 += k
             if ind0 > k:
                 print("Break the loop with ind0 > k")
@@ -143,9 +133,6 @@ def getDcorr(im, r=None, Ng=None, figID=None):
     SNR = [0] * (2 * Ng * Nr)  # Same for SNR
     print(f"SNR  is : {SNR}")
 
-    # print(f"kc is : {kc}")
-    # # SNR = np.zeros(2 * Ng + 1)
-    # print(f"SNR is : {SNR}")
 
     if fastMode == 0:
         ind0 = 1
