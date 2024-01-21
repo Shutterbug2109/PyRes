@@ -11,5 +11,8 @@ pip install git+https://github.com/Shutterbug2109/PyRes.git
     
 ```bash
 cd examples
+```
+    
+```python
 python main_imageDecorr.py
 ```
