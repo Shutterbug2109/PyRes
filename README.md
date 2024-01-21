@@ -9,7 +9,7 @@ pip install git+https://github.com/Shutterbug2109/PyRes.git
 
 # Usage
     
-    ```bash
+```bash
 cd examples
 python main_imageDecorr.py
 ```
