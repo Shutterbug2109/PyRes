@@ -12,6 +12,7 @@ Clone the repository and run the following commands
 
 ```bash
 git clone https://github.com/Shutterbug2109/PyRes.git
+```
     
 ```bash
 cd examples
