@@ -42,7 +42,7 @@ def getDcorr(im, r=None, Ng=None, figID=None):
     X, Y = np.meshgrid(np.linspace(-1, 1, im.shape[1]), np.linspace(-1, 1, im.shape[0]))
     R = np.sqrt(X ** 2 + Y ** 2)
     Nr = len(r)
-    print(f"Nr is : {Nr}")
+    #print(f"Nr is : {Nr}")
 
     # Compute the Fourier normalized image 'In'
     In = fftshift(fftn(fftshift(im)))
@@ -56,27 +56,27 @@ def getDcorr(im, r=None, Ng=None, figID=None):
     # Restrict the analysis to the region where 'r < 1'
     In = mask0 * In
 
-    plt.imshow(np.abs(In), cmap="gray") 
-    plt.title("Fourier Normalized Image")
-    plt.colorbar()
-    plt.show()
+    # plt.imshow(np.abs(In), cmap="gray") 
+    # plt.title("Fourier Normalized Image")
+    # plt.colorbar()
+    # plt.show()
 
     if figID is not None and figID > 0:
         print("Computing dcorr:")
 
     # Compute the Fourier transform 'Ik' of 'im'
     Ik = mask0 * fftshift(fftn(fftshift(im)))
-    print(f"Fourier transform is Ik: {Ik}")
+    #print(f"Fourier transform is Ik: {Ik}")
 
-    print(f"Fourier transform shape is : {Ik.shape}")  # 255, 255
-    plt.imshow(np.abs(Ik), cmap="gray") 
-    plt.title("Fourier Transform")
-    plt.colorbar()
-    plt.show()
+    #print(f"Fourier transform shape is : {Ik.shape}")  # 255, 255
+    # plt.imshow(np.abs(Ik), cmap="gray") 
+    # plt.title("Fourier Transform")
+    # plt.colorbar()
+    # plt.show()
 
     # Compute the amplitude 'c' of the Fourier transform
     c = np.sqrt(np.sum(np.abs(Ik) ** 2))
-    print(f"Amplitude of the Fourier transform is : {c:.3f}")
+    #print(f"Amplitude of the Fourier transform is : {c:.3f}")
 
     # Create a linearly spaced vector 'r0' 
     r0 = np.linspace(r[0], r[-1], Nr)
@@ -102,7 +102,7 @@ def getDcorr(im, r=None, Ng=None, figID=None):
             ind0, snr0 = getDcorrLocalMax(d0[k:])
             ind0 += k
             if ind0 > k:
-                print("Break the loop with ind0 > k")
+                #print("Break the loop with ind0 > k")
                 break
             
     if fastMode == 0:
@@ -110,28 +110,28 @@ def getDcorr(im, r=None, Ng=None, figID=None):
         snr0 = d0[ind0]
 
     k0 = r[ind0]
-    print("k0 is : ", k0)
+    #print("k0 is : ", k0)
     gMax = 2 / r0[ind0]
-    print(f"gMax is : {gMax}")
+    #print(f"gMax is : {gMax}")
     if np.isinf(gMax):
         gMax = max(im.shape[0], im.shape[1]) / 2
-        print(f"gMax is : {gMax}")
+        #print(f"gMax is : {gMax}")
 
     # search of highest frequency peak
-    print(im.shape[0] / 4)
-    print(np.exp(np.linspace(np.log(gMax), np.log(0.15), Ng)))
+    #print(im.shape[0] / 4)
+    #print(np.exp(np.linspace(np.log(gMax), np.log(0.15), Ng)))
     # g = np.concatenate(([[im.shape[0] / 4]], np.exp(np.linspace(np.log(gMax), np.log(0.15), Ng))))
     g = [im.shape[0] / 4] + list(np.exp(np.linspace(np.log(gMax), np.log(0.15), Ng)))
-    print(f"g is :{g}")
+    #print(f"g is :{g}")
 
     #d = np.zeros((Nr, 2 * Ng))
     d = np.zeros((Nr, 2 * Ng + 1))
-    print(f"d shape is : {d.shape}")
+    #print(f"d shape is : {d.shape}")
     # Assuming Ng and Nr are defined and have integer values
     kc = [0] * (2 * Ng * Nr)  # This initializes a list with enough zeros
-    print(f"kc  is : {kc}")
+    #print(f"kc  is : {kc}")
     SNR = [0] * (2 * Ng * Nr)  # Same for SNR
-    print(f"SNR  is : {SNR}")
+    #print(f"SNR  is : {SNR}")
 
 
     if fastMode == 0:
@@ -189,8 +189,8 @@ def getDcorr(im, r=None, Ng=None, figID=None):
 
     kc.append(k0)  # Assuming kc is already a list
     SNR.append(snr0)
-    print(f"kc is : {kc}")
-    print(f"SNR is : {SNR}")
+    #print(f"kc is : {kc}")
+    #print(f"SNR is : {SNR}")
 
     kc = np.array(kc)  # Convert lists to numpy arrays for element-wise operations
     SNR = np.array(SNR)
