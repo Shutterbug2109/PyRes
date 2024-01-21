@@ -11,7 +11,7 @@ from pyres.funcs.resolution import calculate_resolution
 image = load_data('img_gt_0.tif').astype(np.float64)
 print(f"Image shape is : {image.shape}")
 pps = 5  # projected pixel size of 15nm
-pixel_size = 0.0323  # in microns
+pixel_size = 0.0323  # in microns for biosr dataset (Change accordingly)
 
 # typical parameters for resolution estimate
 Nr = 50
