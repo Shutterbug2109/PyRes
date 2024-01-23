@@ -19,9 +19,18 @@ def getDcorr(im, r=None, Ng=None, figID=None):
     if Ng is None:
         Ng = 10
 
-    if isinstance(figID, str) or figID > 1:
-        figID = 0
-        fastMode = 1
+    # if isinstance(figID, str) or figID > 1:
+    #     figID = 0
+    #     fastMode = 1
+    # else:
+    #     fastMode = 0
+
+    if figID is not None:
+        if isinstance(figID, str) or figID > 1:
+            figID = 0
+            fastMode = 1
+        else:
+            fastMode = 0
     else:
         fastMode = 0
 
